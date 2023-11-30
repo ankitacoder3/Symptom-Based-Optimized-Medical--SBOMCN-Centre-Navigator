@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Hospitals</title>
+    <!-- Add your CSS styles or links here if needed -->
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #eff0f3;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: rgb( 10,74,110 );
+            color: #eff0f3;
+        }
+        .navbar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+        
+        /*web*/
+
+
+        h1 {
+            color: #333;
+            text-align: left;
+        }
+
+        
+
+               
+        /* Container styles */
+        .container {
+            margin-top: 50px; /* Add space for navbar */
+            padding: 5px;
+        }
+
+        .page-title {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: rgb( 10,74,110 );
+        
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #eff0f3;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+
+        .body1 {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #ddd;
+        }
+
+        h3 {
+            color: #ddd;
+        }
+
+        
+        div.hospital {
+            background-color: rgb( 10,74,110 );
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 15px 0;
+        }
+
+        p.disease {
+            color: whitesmoke;
+            background-color: black;
+            margin: 15px 0;
+            text-align: left;
+            padding: 20px;
+        }
+        
+/*
+        p.place {
+            color: #171616;
+        }
+
+        p.pin{
+            color:#171616
+        }*/
+
+        p.no-result {
+            color: #FF0000;
+        }
+        .b1 {
+            color: #ffffff;
+            display: block;
+            background-color: rgb( 10,74,110 );
+            margin: 10px;
+            position: absolute;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            
+        }
+    </style>
+
+</head>
+
+
+    
+
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="home.html">Home</a>
+            <a href="predict.html">Predict Disease</a>
+            <a href="findhospital.html">Find Hospital</a>
+        </div>
+        <div class="navbar-right">
+            <a href="home.html#contactus">Contact Us</a>
+        </div>
+    </div>
+    <div class="body1">
+        <div class="page-title" style="text-align: left;">
+            <h2>Medical-Centre Recommendation: Location Based<h2>
+        </div>
+    
+        <div class="container"> 
+        <button class="b1" style="top: 22%;left: 63%;">
+            <a href="findhospital.html?predicted_class={{ D }}" style="color: bisque; text-decoration: none; font-size: medium;">Back</a>
+        </button>
+
+        <button class="b1" style="top: 22%;left: 75%;">
+            <a href="home.html#contactus" style="color: bisque; text-decoration: none; font-size: medium;">Next</a>
+        </button>
+
+        <h1>Inputs</h1>
+
+        {% if result %}
+        <p class="disease">Disease Name: {{D}}<br><br>
+            User's Location - PLACE: {{ p1}}<br><br>
+        User's Location - PINCODE: {{ p2}}
+        <hr><br></p>
+        {% else %}
+        <p class="disease" style="            color: whitesmoke;
+        background-color:  rgb( 10,74,110 ); ;
+        margin: 25px 0;
+        text-align: left;
+        padding: 30px;">
+        Disease Name: {{D}}<br><br>
+            User's Location - PLACE: {{ p1}}<br><br>
+        User's Location - PINCODE: {{ p2}}
+        <hr><br></p>
+        <h2>Recommended Hospitals</h2>
+        {% endif %}
+
+
+        {% if result %}
+        
+            
+            <h1>Recommended Hospitals</h1>
+
+            {% for hospital in result %}
+                <div class="hospital">
+                <!-- <h3>Hospital Name: {{ hospital['Hospital Name'] }}</h3>
+                    <p>Address: {{ hospital['Address'] }}</p>
+                    <p >Detailed Address:<br> {{ hospital['Detailed Address'] }}</p>
+                    <p style="width: 400px; position: absolute; ">Detailed Address:<br> {{ hospital['Detailed Address'] }}</p>
+                    <p>Latitude: {{ hospital['Latitude'] }}</p>
+                    <p>Longitude: {{ hospital['Longitude'] }}</p>
+                    <p>Price: {{ hospital['Price'] }}</p>
+                    <p>Rating: {{ hospital['Rating'] }}</p>-->
+
+                    <div class="hospital-info" style="text-align: center; flex-grow: 1; font-size: large; ">
+                        <h3>Hospital Name: {{ hospital['Hospital Name'] }}</h3>
+
+                        <p>Address: {{ hospital['Address'] }}</p>
+                        <p>Detailed Address:<br><span style="display: inline-block; width: 450px; font-size: large; text-align: justify;"> <br>{{ hospital['Detailed Address'] }} </span></p>
+                    </div>
+                    <div class="hospital-details" style="display: flex; justify-content: space-between; align-items: flex-start; margin: 20px; font-size: medium;">
+                        <div style="flex-basis: 50%; text-align: justify;">
+                            <p>Latitude: {{'%0.3f'|format(hospital['Latitude']) }}<br><br>
+                                Longitude: {{ '%0.3f'|format(hospital['Longitude'])  }}</p>
+                        </div>
+                        <div style="flex-basis: 50%; text-align: right;">
+                            <p>Price: {{ hospital['Price'] }}<br><br>
+                                Rating: {{ hospital['Rating'] }}</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p class="no-result">No hospitals found. Please try again.</p>
+        {% endif %}
+    </div>
+    </div>
+
+
+</body>
+<footer class="footer">
+    &copy; 2023 Symptom-Based Optimized Medical-Centre Navigator
+</footer>
+</html>

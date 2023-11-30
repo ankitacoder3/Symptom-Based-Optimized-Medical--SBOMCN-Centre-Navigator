@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disease Prediction Output</title>
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #eff0f3;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: rgb( 10,74,110 );
+            color: #eff0f3;
+        }
+        .navbar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+        
+        /*web*/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #f9f2f2;
+            margin-bottom: 10px;
+            text-align: justify;
+
+        }
+
+        .symptoms {
+            background-color: rgb( 10,74,110 );;
+            border: 1px solid #f1e9e9;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 500px;
+            text-align: left;
+            color: #000;
+            font-size: medium;
+
+        }
+
+        .symptoms p{
+            font-size: medium;
+
+        }
+
+        .predicted-disease {
+            background-color: rgb( 10,74,110 );;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 500px;
+        }
+
+        .a1 {
+            color:rgb( 10,74,110 );
+            color: #000;
+            display: -moz-stack;
+            padding: 10px;
+            margin-left:20%;
+            width: 300px;
+            background-color:#ffffff;
+            margin-bottom: 10px;
+            align-content: center;
+            text-decoration: none;
+        }
+
+        
+        /* Container styles */
+        .container {
+            margin-top: 50px; /* Add space for navbar */
+            padding: 5px;
+        }
+
+        .page-title {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: rgb( 10,74,110 );
+        
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #eff0f3;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .b1,.b2 {
+            color: #ffffff;
+            display: block;
+            background-color: #333;
+            margin: 10px;
+            position: absolute;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="home.html">Home</a>
+            <a href="predict.html">Predict Disease</a>
+            <a href="findhospital.html">Find Hospital</a>
+        </div>
+        <div class="navbar-right">
+                <a href="home.html#contactus">Contact Us</a>
+    
+            </div>
+        
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-title" style="text-align: left;;">
+            <h2>Disease Prediction Output<h2>
+        </div>
+       
+        
+        <button class="b1" style="top: 22%;left: 3%;">
+            <a href="predict.html" style="color: #ffffff; text-decoration: none; font-size: medium;">Re-submit</a>
+        </button>
+
+        <button class="b1" style="top: 22%;left: 15%;">
+            <a href="findhospital.html?predicted_class={{ predicted_class }}" 
+            style="color: #ffffff; text-decoration: none; font-size: medium;">Next</a>
+        </button>
+    
+    <div class="symptoms">
+        <h3 style="text-align: center; color: #ffffff; "><b> Symptoms  </b></h3>
+        <p>1. {{S1}}</p>
+        <p>2. {{S2}}</p>
+        <p>3. {{S3}}</p>
+        <p>4. {{S4}}</p>
+        <p>5. {{S5}}</p>
+    </div>
+    <br>
+
+    
+    
+    <div class="predicted-disease">
+        <h3 style="text-align: center; color: #ffffff;"><b>Predicted Disease</b></h3>
+        <p><b></b></p>
+        <p style="font-size: large; text-align: center;" class="a1"><b>{{ predicted_class }}</b></p>
+        <br>
+        <p></p>
+        <!--- flag==1 red, 2 green, 0 orange -->
+        {%if flag== 1%}
+        <p style="font-size: medium; color: #c60303; background-color: #ccc; padding: 5px;" >{{ additional }}</p>
+        {%elif flag==0%}
+        <p style="font-size: medium; color: #ffc86e; padding: 5px;" >{{ additional }}</p>
+        {%elif flag==2%}
+        <p style="font-size: medium; color: #a4ea9b; padding: 5px;" >{{ additional }}</p>
+        {%else%}
+        <p style="font-size: medium; padding: 5px;" >{{ additional }}</p>
+        {%endif%}
+        <!--<p style="font-size: medium;" >{{ additional }}</p>-->
+    </div>
+
+    </div>
+    <br>
+    <br>
+
+    <footer class="footer">
+        &copy; 2023 Symptom-Based Optimized Medical-Centre Navigator
+    </footer>
+</body>
+</html>
+

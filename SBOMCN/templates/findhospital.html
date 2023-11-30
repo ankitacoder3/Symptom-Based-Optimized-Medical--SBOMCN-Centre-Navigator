@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Hospital</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            background-color: #eff0f3;
+            font-family: Arial, sans-serif;
+            
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #eff0f3;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: rgb(10,74,110);
+            color: #eff0f3;
+        }
+        .navbar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+
+        /* Search section styles */
+        .search-section {
+            background-color:white;
+            height: 600px;
+            padding: 20px;
+            margin-top: 60px; /* Add space below navbar */
+            text-align: center;
+        }
+
+        /* Content container styles */
+        .container {
+            margin-top: 20px; /* Add space between search section and content */
+            padding: 20px;
+            min-height: calc(100vh - 220px); /* Adjust for navbar, search section, and footer */
+            background-color: rgb(22, 83, 119);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #eff0f3;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Predict page specific styles */
+        .predict-form {
+            /*background-color: #fff;*/
+            border: 1px solid #ddd;
+            background-color: rgb(22, 83, 119);
+            color: aliceblue;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin: 20px auto; /* Center the form and add margin below */
+            text-align: left;
+            max-width: 400px; /* Limit form width for readability */
+        }
+
+        .predict-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .predict-form input[type="text"],
+        .predict-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .predict-form button[type="button"] {
+            background-color:whitesmoke;
+            color:  #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+        <script>
+            // Function to get URL parameters
+            function getQueryParam(name) {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get(name);
+            }
+    
+            // Retrieve the predicted_class value from the URL
+            const predictedClass1 = getQueryParam('predicted_class');
+    
+            // Use the retrieved value as needed (for example, log it to the console)
+            console.log('Predicted Class:', predictedClass1);
+    
+
+        </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="home.html">Home</a>
+            <a href="predict.html">Predict Disease</a>
+            <a href="findhospital.html">Find Hospital</a>
+        </div>
+
+        <div class="navbar-right">
+            <a href="home.html#contactus">Contact Us</a>
+
+        </div>
+    </div>
+
+    <div class="search-section">
+
+        <div style="height: 80px;;"></div>
+
+        <h1 style="color:  rgb(22, 83, 119);">Search for Hospitals</h1><br><br>
+        
+
+        <form class="predict-form" id="hospitalSearchForm" action="{{ url_for('recommend') }}" method="post">
+            <label for="diseaseName">Disease Name:</label>
+            <select id="diseaseName" name="diseaseName">
+
+                <option value="">Select disease</option>
+
+                {% if p_c == "Immune thrombocytopenia" %}
+                <option value="Immune thrombocytopenia" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Immune thrombocytopenia</option>
+                {% elif  "Immune thrombocytopenia" in p_cs %}
+                <option value="Immune thrombocytopenia" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Immune thrombocytopenia</option>
+                {% else %}
+                <option value="Immune thrombocytopenia" >Immune thrombocytopenia</option>
+                {% endif %}
+
+                {% if p_c == "Fabri Disease" %}
+                <option value="Fabri Disease" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Fabri Disease</option>
+                {% elif  "Fabri Disease" in p_cs %}
+                <option value="Fabri Disease"  style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Fabri Disease</option>
+                {% else %}
+                <option value="Fabri Disease">Fabri Disease</option>
+                {% endif %}
+
+
+                {% if p_c == "Cystic Fibrosis" %}
+                <option value="Cystic Fibrosis" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Cystic Fibrosis</option>
+                {% elif  "Cystic Fibrosis" in p_cs %}
+                <option value="Cystic Fibrosis" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Cystic Fibrosis</option>
+                {% else %}
+                <option value="Cystic Fibrosis">Cystic Fibrosis</option>
+                {% endif %}
+
+                {% if p_c == "Wilson's disease" %}
+                <option value="Wilson's disease" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Wilson's disease</option>
+                {% elif  "Wilson's disease" in p_cs %}
+                <option value="Wilson's disease" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Wilson's disease</option>
+                {% else %}
+                <option value="Wilson's disease">Wilson's disease</option>
+                {% endif %}
+
+                {% if p_c == "Pulmonary Fibrosis" %}
+                <option value="Pulmonary Fibrosis" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Pulmonary Fibrosis</option>
+                {% elif  "Pulmonary Fibrosis" in p_cs %}
+                <option value="Pulmonary Fibrosis" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Pulmonary Fibrosis</option>
+                {% else %}
+                <option value="Pulmonary Fibrosis">Pulmonary Fibrosis</option>
+                {% endif %}
+
+                {% if p_c == "Mitochondrial Neurogastrointestinal Encephalomyopathy" %}
+                <option value="Mitochondrial Neurogastrointestinal Encephalomyopathy" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Mitochondrial Neurogastrointestinal Encephalomyopathy</option>
+                {% elif  "Mitochondrial Neurogastrointestinal Encephalomyopathy" in p_cs %}
+                <option value="Mitochondrial Neurogastrointestinal Encephalomyopathy" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Mitochondrial Neurogastrointestinal Encephalomyopathy</option>
+                {% else %}
+                <option value="Mitochondrial Neurogastrointestinal Encephalomyopathy">Mitochondrial Neurogastrointestinal Encephalomyopathy</option>
+                {% endif %}
+
+                {% if p_c == "Dengue" %}
+                <option value="Dengue" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Dengue</option>
+                {% elif  "Dengue" in p_cs %}
+                <option value="Dengue" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Dengue</option>
+                {% else %}
+                <option value="Dengue">Dengue</option>
+                {% endif %}
+
+                {% if p_c == "Chicken pox" %}
+                <option value="Chicken pox" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Chicken pox</option>
+                {% elif  "Chicken pox" in p_cs %}
+                <option value="Chicken pox" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Chicken pox</option>
+                {% else %}
+                <option value="Chicken pox">Chicken pox</option>
+                {% endif %}
+
+                {% if p_c == "Lung cancer" %}
+                <option value="Lung cancer" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Lung cancer</option>
+                {% elif  "Lung cancer" in p_cs %}
+                <option value="Lung cancer" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Lung cancer</option>
+                {% else %}
+                <option value="Lung cancer">Lung cancer</option>
+                {% endif %}
+
+                {% if p_c == "Tuberculosis" %}
+                <option value="Tuberculosis" selected style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Tuberculosis</option>
+                {% elif  "Tuberculosis" in p_cs %}
+                <option value="Tuberculosis" style="color: rgb(68, 0, 255); font-size: medium; font-style:italic;">Tuberculosis</option>
+                {% else %}
+                <option value="Tuberculosis">Tuberculosis</option>
+                {% endif %}
+
+            </select>
+
+            <label for="filter">Filter by:</label>
+            <select id="filter" name="filter">
+                <option value="nearby">Nearby Hospitals</option>
+                <option value="review">Rating-based Hospitals</option>
+                <option value="cost">Cost-based Hospitals</option>
+            </select>
+
+            <div id="locationDetails" style="display: none;">
+                <!-- Additional location details fields -->
+                <label for="place_name">Place Name:</label>
+                <input type="text" id="place_name" name="place_name">
+
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode">
+            </div>
+
+            <input type="hidden" name="option" id="option" value="nearby">  <!-- Add this hidden field to store the option -->
+
+            <!-- Hidden input to indicate whether to use current location -->
+            <input type="hidden" id="useCurrentLocation" name="useCurrentLocation" value="false">
+<br><br>
+            <button type="button" id="searchButton">Search</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        &copy; 2023 Symptom-Based Optimized Medical-Centre Navigator
+    </footer>
+
+    <script>
+        const filterSelect = document.getElementById("filter");
+        const locationDetails = document.getElementById("locationDetails");
+        const searchButton = document.getElementById("searchButton");
+        const useCurrentLocationInput = document.getElementById("useCurrentLocation");
+    
+        searchButton.addEventListener("click", function () {
+            const selectedFilter = filterSelect.value;
+    
+            if (selectedFilter === "nearby") {
+                // Check if the user has entered place name and pincode
+                const placeName = document.getElementById("place_name").value;
+                const pincode = document.getElementById("pincode").value;
+    
+                if (!placeName || !pincode) {
+                    const shouldUseCurrentLocation = confirm("Do you want to use your current location for nearby hospitals?");
+                    
+                    if (shouldUseCurrentLocation) {
+                        // Set the hidden input value to true
+                        useCurrentLocationInput.value = "true";
+                    } else {
+                        
+                        // Display location details fields
+                        useCurrentLocationInput.value = "false";  // V IMP --- DONOT CHANGE
+                        locationDetails.style.display = "block";
+                        return; // Do not proceed further until place name and pincode are entered
+                    }
+                } else {
+                    // Set the hidden input value to true
+                    
+                    useCurrentLocationInput.value = "false";
+                }
+            } else {
+                // Set the hidden input value to false
+                useCurrentLocationInput.value = "false";
+            }
+    
+            // Submit the form
+            document.getElementById("hospitalSearchForm").submit();
+        });
+    </script>
+    
+    
+    
+</body>
+</html>

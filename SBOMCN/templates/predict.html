@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Disease</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eff0f3;
+        }
+
+       
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #eff0f3;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: rgb( 10,74,110 );
+            color: #eff0f3;
+        }
+        .navbar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+        
+        
+
+        /* Container styles */
+        .container {
+            margin-top: 60px; /* Add space for navbar */
+            padding: 20px;
+        }
+
+        .page-title {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: rgb( 10,74,110 );
+        
+        }
+
+        /* Form styles */
+        .form-container {
+
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgb( 10,74,110 );
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label, .form-container select, .form-container button {
+            color: #eff0f3;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-container select {
+            background-color: #eff0f3;
+            color: rgb( 10,74,110 );
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .form-container button {
+            background-color: #eff0f3;
+            color: rgb( 10,74,110 );
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #eff0f3;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="home.html">Home</a>
+            <a href="predict.html">Predict Disease</a>
+            <a href="findhospital.html">Find Hospital</a>
+            
+        </div>
+        <div class="navbar-right">
+                <a href="home.html#contactus">Contact Us</a>
+    
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-title">
+            <h2>Predict Page<h2>
+        </div>
+
+        
+
+        <h3>Please select the symptoms that you are facing so we can predict the disease you have. </h3>
+        
+        <div style="height: 100px; background-color: #eff0f3;"></div>
+
+        <div class="form-container">
+            <form method="POST", action="{{url_for('predict_output')}}">
+                <div>
+                    <label for="symptom1">Symptom 1:</label>
+                    <select id="symptom1" name="option1">
+                        <option value="">Select option 1</option>
+                        <option value="option1_value1">Easy or excessive Bruising </option>
+                        <option value="option1_value2">Pain, tingling, burning sensations in the hands and feet  </option>
+                        <option value="option1_value3">Wet cough</option>
+                        <option value="option1_value4">Loss of appetite & abdominal pain</option>
+                        <option value="option1_value5">Shortness of breath</option>
+                        <option value="option1_value6">Weight and muscle loss</option>
+                        <option value="option1_value7">Severe Headache</option>
+                        <option value="option1_value8">Itchy, blister rash</option>
+                        <option value="option1_value9">Chronic cough or Hoarseness</option>
+                    </select>
+                </div>
+        
+                <div>
+                    <label for="symptom2">Symptom 2:</label>
+                    <select id="symptom2" name="option2">
+                        <option value="">Select option 2</option>
+                        <option value="option2_value1">Easy or excessive Bleeding</option>
+                        <option value="option2_value2">Skin rash</option>
+                        <option value="option2_value3">Frequent lung (or sinus) infections</option>
+                        <option value="option2_value4">Yellowing of the skin</option>
+                        <option value="option2_value5">Dry cough</option>
+                        <option value="option2_value6">Drooping of the eyelids and tingling sensations in the limbs</option>
+                        <option value="option2_value7">High fever 104 F (40 C)</option>
+                        <option value="option2_value8">Fever</option>
+                        <option value="option2_value9">Chest pain</option>
+                    </select>
+                </div>
+        
+                <div>
+                    <label for="symptom3">Symptom 3:</label>
+                    <select id="symptom3" name="option3">
+                        <option value="">Select option 3</option>
+                        <option value="option3_value1">Petechiae</option>
+                        <option value="option3_value2">Gastrointestinal symptoms</option>
+                        <option value="option3_value3">Only Prolonged diarrhea </option>
+                        <option value="option3_value4">Fluid buildup in the legs or abdomen</option>
+                        <option value="option3_value5">Widening rounding of the tips of fingers/toes</option>
+                        <option value="option3_value6">Digestive problems</option>
+                        <option value="option3_value7">Muscle, bone or joint pain</option>
+                        <option value="option3_value8">Night sweat or chills</option>
+                        <option value="option3_value9">Unexplained weight loss</option>
+                    </select>
+                </div>
+        
+                <div>
+                    <label for="symptom4">Symptom 4:</label>
+                    <select id="symptom4" name="option4">
+                        <option value="">Select option 4</option>
+                        <option value="option4_value1">Fatigue</option>
+                        <option value="option4_value2">Eye problems</option>
+                        <option value="option4_value3">Poor growth and failure to gain weight</option>
+                        <option value="option4_value4">Golden-brown eye discoloration </option>
+                        <option value="option4_value5">Weight loss</option>
+                        <option value="option4_value6">Progressive difficulty speaking and swallowing</option>
+                        <option value="option4_value7">Nausea or Vomiting (and fever)</option>
+                        <option value="option4_value8">Loss of appetite</option>
+                        <option value="option4_value9">Cough with blood</option>
+                    </select>
+                </div>
+        
+                <div>
+                    <label for="symptom5">Symptom 5:</label>
+                    <select id="symptom5" name="option5">
+                        <option value="">Select option 5</option>
+                        <option value="option5_value1">Enlarged spleen</option>
+                        <option value="option5_value2">Hearing loss or Heart problems or Kidney problems</option>
+                        <option value="option5_value3">Male infertility </option>
+                        <option value="option5_value4">Uncontrolled movements or muscle stiffness or tremors</option>
+                        <option value="option5_value5">Aching muscles & joints	</option>
+                        <option value="option5_value6">Encephalopathy (brain damage)</option>
+                        <option value="option5_value7">Pain behind the eyes</option>
+                        <option value="option5_value8">Headache</option>
+                        <option value="option5_value9">Problems with speech,swallowing, Physical coordination</option>
+                        <option value="option5_value10">Swollen glands</option>
+                    </select>
+                </div>
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="height: 100px; background-color: #eff0f3;"></div>
+    
+    <footer class="footer">
+        &copy; 2023 Symptom-Based Optimized Medical-Centre Navigator
+    </footer>
+</body>
+</html>
