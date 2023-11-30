@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Hospital</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            background-color: #eff0f3;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #eff0f3;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: rgb( 10,74,110 );
+            color: #eff0f3;
+        }
+        .navbar-left {
+            float: left;
+            margin-left: 20px;
+        }
+        .navbar-right {
+            float: right;
+            margin-right: 20px;
+        }
+        
+
+        /* Search section styles */
+        .search-section {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-top: 60px; /* Add space below navbar */
+            text-align: center;
+        }
+
+        /* Content container styles */
+        .container {
+            margin-top: 20px; /* Add space between search section and content */
+            padding: 20px;
+            min-height: calc(100vh - 220px); /* Adjust for navbar, search section, and footer */
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #333;
+            color: #eff0f3;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Predict page specific styles */
+        .predict-form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin: 20px auto; /* Center the form and add margin below */
+            text-align: left;
+            max-width: 400px; /* Limit form width for readability */
+        }
+
+        .predict-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .predict-form input[type="text"],
+        .predict-form select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .predict-form button[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="home.html">Home</a>
+            <a href="predict.html">Predict</a>
+            <a href="findhospital.html">Find Hospital</a>
+        </div>
+        <div class="navbar-right">
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="search-section">
+        
+        <div style="height: 100px; background-color: #eff0f3;"></div>
+
+        <h2>Search for Hospitals</h2>
+    
+
+        <form class="predict-form" id="hospitalSearchForm">
+            <label for="diseaseName">Disease Name:</label>
+            <select id="diseaseName" name="diseaseName">
+                <option value="">Select disease</option>
+                <option value="IT">Immune thrombocytopenia</option>
+                <option value="FD">Fabri Disease</option>
+                <option value="CF">Cystic Fibrosis</option>
+                <option value="WD">Wilson's disease</option>
+                <option value="PF">Pulmonary Fibrosis</option>
+                <option value="MN">Mitochondrial Neurogastrointestinal Encephalomyopathy</option>
+                <option value="DG">Dengue</option>
+                <option value="CP">Chicken pox</option>
+                <option value="LC">Lung cancer</option>
+                <option value="TB">Tuberculosis</option>
+            </select>
+            <label for="filter">Filter by:</label>
+            <select id="filter" name="filter">
+                <option value="nearby">Nearby Hospitals</option>
+                <option value="review">Review-based Hospitals</option>
+                <option value="cost">Cost-based Hospitals</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>Hospital Search Results</h1>
+        <!-- OP here -->
+        <p>Sample hospital details will be displayed here.</p>
+    </div>
+
+    <footer class="footer">
+        &copy; 2023 Symptom-Based Optimized Medical-Centre Navigator
+    </footer>
+
+    <script>
+        const searchForm = document.getElementById("hospitalSearchForm");
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Fetch and display hospital details based on search
+            // You can use JavaScript to fetch data from the backend here
+        });
+    </script>
+</body>
+</html>

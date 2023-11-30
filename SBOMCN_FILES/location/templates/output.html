@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Hospitals</title>
+    <style>
+        /* Add any custom styles you want for the output here */
+    </style>
+</head>
+<body>
+    <h1>Recommended Hospitals</h1>
+    <h2>Disease: {{ disease_name }}</h2>
+    <h2>User's Location: {{ user_place }}</h2>
+
+    <table border="1">
+        <tr>
+            <th>Hospital Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Distance (km)</th>
+        </tr>
+        {% for index, row in nearest_hospitals.iterrows() %}
+        <tr>
+            <td>{{ row['Hospital Name'] }}</td>
+            <td>{{ row['Latitude'] }}</td>
+            <td>{{ row['Longitude'] }}</td>
+            <td>{{ row['Distance'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Accuracy: {{ accuracy }}%</h2>
+</body>
+</html>
