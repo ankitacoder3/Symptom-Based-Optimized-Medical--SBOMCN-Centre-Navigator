@@ -1,1 +1,1 @@
-# Symptom-Based-Optimized-Medical-Centre-Navigator--SBOMCN
+# Symptom-Based-Optimized-Medical-Centre-Navigator-SBOMCN
